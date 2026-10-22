@@ -1,0 +1,123 @@
+name: kestra-rehearsal
+
+x-postgres: &postgres
+  image: postgres:17.9-bookworm@sha256:47f917f7409eacd22fc5dfb1dee634e1b55cf0c01d1a7eb701be2227a03e0641
+  environment: &postgres-env
+    POSTGRES_USER: lab
+    POSTGRES_PASSWORD: ${LAB_DB_PASSWORD:?Run lab setup first}
+    POSTGRES_DB: rehearsal
+  healthcheck:
+    test: [CMD-SHELL, "pg_isready -U lab -d rehearsal"]
+    interval: 2s
+    timeout: 3s
+    retries: 40
+  networks: [lab]
+
+services:
+  publisher:
+    <<: *postgres
+    container_name: kestra-rehearsal-publisher
+    networks:
+      lab:
+        ipv4_address: 172.29.77.10
+    command: [postgres, -c, wal_level=logical, -c, max_replication_slots=16, -c, max_wal_senders=16, -c, cluster_name=rehearsal_publisher]
+    volumes:
+      - publisher:/var/lib/postgresql/data
+      - ./replication-auth.sh:/lab/replication-auth.sh:ro
+
+  subscriber:
+    <<: *postgres
+    networks:
+      lab:
+        ipv4_address: 172.29.77.11
+    command: [postgres, -c, wal_level=logical, -c, max_replication_slots=16, -c, max_logical_replication_workers=8, -c, cluster_name=rehearsal_subscriber]
+    volumes: [subscriber:/var/lib/postgresql/data]
+
+  standby:
+    <<: *postgres
+    networks:
+      lab:
+        ipv4_address: 172.29.77.12
+    user: postgres
+    profiles: [replica]
+    environment:
+      <<: *postgres-env
+      PGPASSWORD: ${LAB_DB_PASSWORD}
+      PGDATA: /var/lib/postgresql/data
+    entrypoint: [/bin/bash, -ec]
+    command:
+      - |
+        if [ ! -s "$$PGDATA/PG_VERSION" ]; then
+          pg_basebackup -h publisher -U lab -D "$$PGDATA" -R -X stream -S lab_standby
+          printf '\nhot_standby_feedback=on\nsync_replication_slots=on\n' >> "$$PGDATA/postgresql.auto.conf"
+          printf "\nprimary_conninfo='host=publisher port=5432 user=lab password=%s dbname=rehearsal'\n" "$$PGPASSWORD" >> "$$PGDATA/postgresql.auto.conf"
+        fi
+        chmod 700 "$$PGDATA"
+        exec postgres -c wal_level=logical -c max_replication_slots=16 -c max_wal_senders=16 -c cluster_name=rehearsal_standby
+    volumes: [standby:/var/lib/postgresql/data]
+
+  kestra-db:
+    <<: *postgres
+    networks:
+      lab:
+        ipv4_address: 172.29.77.13
+    volumes: [kestra-db:/var/lib/postgresql/data]
+
+  kestra:
+    image: kestra/kestra:v2.0.6@sha256:bc2e8b5c639c3ff1f7ba9c1aadef4686a87669895a1d80c23d01c58d45785914
+    user: root
+    command: server standalone --worker-thread=2
+    ports: ["127.0.0.1:18080:8080"]
+    networks:
+      lab:
+        ipv4_address: 172.29.77.14
+    depends_on:
+      kestra-db:
+        condition: service_healthy
+    volumes:
+      - kestra:/app/storage
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      JAVA_OPTS: -Xms256m -Xmx1536m -XX:UseSVE=0 -XX:ActiveProcessorCount=2
+      SECRET_LAB_DB_PASSWORD: ${SECRET_LAB_DB_PASSWORD}
+      KESTRA_CONFIGURATION: |
+        datasources:
+          postgres:
+            url: jdbc:postgresql://kestra-db:5432/rehearsal
+            driverClassName: org.postgresql.Driver
+            username: lab
+            password: ${LAB_DB_PASSWORD}
+        kestra:
+          worker:
+            controllers:
+              wait-for-ready:
+                deadline: PT5M
+          server:
+            basic-auth:
+              username: lab@example.invalid
+              password: ${LAB_ADMIN_PASSWORD}
+          repository:
+            type: postgres
+          queue:
+            type: postgres
+          storage:
+            type: local
+            local:
+              base-path: /app/storage
+          tasks:
+            tmp-dir:
+              path: /tmp/kestra-wd
+          url: http://localhost:18080/
+
+networks:
+  lab:
+    ipam:
+      config:
+        - subnet: 172.29.77.0/24
+
+volumes:
+  publisher:
+  subscriber:
+  standby:
+  kestra-db:
+  kestra:

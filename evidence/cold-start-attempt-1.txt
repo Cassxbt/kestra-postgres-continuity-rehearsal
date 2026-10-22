@@ -1,0 +1,116 @@
+python3 setup.py
+Created private lab configuration; no credentials were printed.
+docker compose up -d --wait kestra-db
+ Volume kestra-rehearsal-clean-20261022-metadata Creating 
+ Volume kestra-rehearsal-clean-20261022-metadata Created 
+ Container kestra-rehearsal-kestra-db-1 Recreate 
+ Container kestra-rehearsal-kestra-db-1 Recreated 
+ Container kestra-rehearsal-kestra-db-1 Starting 
+ Container kestra-rehearsal-kestra-db-1 Started 
+ Container kestra-rehearsal-kestra-db-1 Waiting 
+ Container kestra-rehearsal-kestra-db-1 Healthy 
+docker compose up -d kestra
+ Volume kestra-rehearsal-clean-20261022-storage Creating 
+ Volume kestra-rehearsal-clean-20261022-storage Created 
+ Container kestra-rehearsal-kestra-db-1 Running 
+ Container kestra-rehearsal-kestra-1 Recreate 
+ Container kestra-rehearsal-kestra-1 Recreated 
+ Container kestra-rehearsal-kestra-db-1 Waiting 
+ Container kestra-rehearsal-kestra-db-1 Healthy 
+ Container kestra-rehearsal-kestra-1 Starting 
+ Container kestra-rehearsal-kestra-1 Started 
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+setUpClass (test_rehearsal.RehearsalIntegrationTests) ... ERROR
+setUpClass (test_rehearsal.RehearsalSafetyTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (test_rehearsal.RehearsalIntegrationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/tests/test_rehearsal.py", line 20, in setUpClass
+    install_flow()
+    ~~~~~~~~~~~~^^
+  File "<checkout>/tests/lab_support.py", line 73, in install_flow
+    eventually(available, timeout=90)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/tests/lab_support.py", line 42, in eventually
+    last = check()
+  File "<checkout>/tests/lab_support.py", line 69, in available
+    return api('GET', '/api/v1/configs')
+  File "<checkout>/tests/lab_support.py", line 56, in api
+    with urllib.request.urlopen(request, timeout=30) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 487, in open
+    response = self._open(req, data)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1350, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1325, in do_open
+    r = h.getresponse()
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py", line 1450, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py", line 305, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+======================================================================
+ERROR: setUpClass (test_rehearsal.RehearsalSafetyTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/tests/test_rehearsal.py", line 86, in setUpClass
+    install_flow()
+    ~~~~~~~~~~~~^^
+  File "<checkout>/tests/lab_support.py", line 73, in install_flow
+    eventually(available, timeout=90)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/tests/lab_support.py", line 42, in eventually
+    last = check()
+  File "<checkout>/tests/lab_support.py", line 69, in available
+    return api('GET', '/api/v1/configs')
+  File "<checkout>/tests/lab_support.py", line 56, in api
+    with urllib.request.urlopen(request, timeout=30) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 487, in open
+    response = self._open(req, data)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1350, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1325, in do_open
+    r = h.getresponse()
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py", line 1450, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py", line 305, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.040s
+
+FAILED (errors=2)
+make: *** [test] Error 1

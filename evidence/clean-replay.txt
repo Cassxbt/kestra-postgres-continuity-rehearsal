@@ -1,0 +1,47 @@
+python3 setup.py
+Created private lab configuration; no credentials were printed.
+docker compose up -d --wait kestra-db
+ Volume kestra-rehearsal-release-20261022-metadata Creating 
+ Volume kestra-rehearsal-release-20261022-metadata Created 
+ Container kestra-rehearsal-kestra-db-1 Recreate 
+ Container kestra-rehearsal-kestra-db-1 Recreated 
+ Container kestra-rehearsal-kestra-db-1 Starting 
+ Container kestra-rehearsal-kestra-db-1 Started 
+ Container kestra-rehearsal-kestra-db-1 Waiting 
+ Container kestra-rehearsal-kestra-db-1 Healthy 
+docker compose up -d kestra
+ Volume kestra-rehearsal-release-20261022-storage Creating 
+ Volume kestra-rehearsal-release-20261022-storage Created 
+ Container kestra-rehearsal-kestra-db-1 Running 
+ Container kestra-rehearsal-kestra-1 Recreate 
+ Container kestra-rehearsal-kestra-1 Recreated 
+ Container kestra-rehearsal-kestra-db-1 Waiting 
+ Container kestra-rehearsal-kestra-db-1 Healthy 
+ Container kestra-rehearsal-kestra-1 Starting 
+ Container kestra-rehearsal-kestra-1 Started 
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+test_missing_standby_slot_refuses_before_any_promotion (test_rehearsal.RehearsalIntegrationTests.test_missing_standby_slot_refuses_before_any_promotion) ...   execution=6ArHQQfag2ZmZRAdKejwr1 state=FAILED
+ok
+test_switchover_preserves_existing_subscriber_and_exact_data (test_rehearsal.RehearsalIntegrationTests.test_switchover_preserves_existing_subscriber_and_exact_data) ...   execution=2fwyVKOjJB7JzugVeyhfXL state=SUCCESS
+  execution=5seUuTJbv3dpFQ7fhjiJkv state=FAILED
+ok
+test_denied_consent_cannot_stop_or_promote (test_rehearsal.RehearsalSafetyTests.test_denied_consent_cannot_stop_or_promote) ...   execution=TdaoBVM3ChjmiKT6TtAyo state=FAILED
+ok
+test_disabled_subscription_cannot_stop_or_promote (test_rehearsal.RehearsalSafetyTests.test_disabled_subscription_cannot_stop_or_promote) ...   execution=3Xfgn7WLvCneZVfRCgfrr8 state=FAILED
+ok
+test_missing_expected_subscription_cannot_stop_or_promote (test_rehearsal.RehearsalSafetyTests.test_missing_expected_subscription_cannot_stop_or_promote) ...   execution=1UyAjduI355wPyRG10DGNB state=FAILED
+ok
+test_unexpected_data_cannot_pass_by_matching_only_row_count (test_rehearsal.RehearsalSafetyTests.test_unexpected_data_cannot_pass_by_matching_only_row_count) ...   execution=1IUTDLl5i05UYY9H5AC1gk state=FAILED
+ok
+test_unreachable_standby_is_failure_not_a_ready_result (test_rehearsal.RehearsalSafetyTests.test_unreachable_standby_is_failure_not_a_ready_result) ...   execution=76OIZUaCfcVT8l1dnsXUQq state=FAILED
+ok
+test_wrong_publisher_identity_cannot_stop_or_promote (test_rehearsal.RehearsalSafetyTests.test_wrong_publisher_identity_cannot_stop_or_promote) ...   execution=1evT9e49vXa0XBTtOykxOj state=FAILED
+ok
+test_wrong_subscriber_identity_cannot_stop_or_promote (test_rehearsal.RehearsalSafetyTests.test_wrong_subscriber_identity_cannot_stop_or_promote) ...   execution=7Y606I1kFy74kPv6AdLDmQ state=FAILED
+ok
+test_connection_closed_during_startup_is_retried (test_startup.StartupReadinessTests.test_connection_closed_during_startup_is_retried) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 371.426s
+
+OK

@@ -1,0 +1,6 @@
+test_connection_closed_during_startup_is_retried (test_startup.StartupReadinessTests.test_connection_closed_during_startup_is_retried) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.559s
+
+OK

@@ -1,0 +1,179 @@
+{
+  "suite": "integration-reviewed-2.txt",
+  "tests": 9,
+  "duration_seconds": 138.743,
+  "result": "OK",
+  "flow_sha256": "646e620bccab11294606b2d13d93e8f37de02d0e3ccefa9b2880a767a364acc0",
+  "executions": [
+    {
+      "execution_id": "6IKdDJlsoMRWdCybC8ldV6",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_failover_slot",
+        "standby_not_ready"
+      ],
+      "completed_tasks": [
+        "require_consent",
+        "inspect_publisher",
+        "publisher_observation",
+        "require_expected_publisher",
+        "inspect_subscriber",
+        "require_expected_subscriber",
+        "inspect_standby"
+      ]
+    },
+    {
+      "execution_id": "qjJx2OgMeTtmgf3Z7R3Ee",
+      "state": "SUCCESS",
+      "failed_tasks": [],
+      "completed_tasks": [
+        "require_consent",
+        "inspect_publisher",
+        "publisher_observation",
+        "require_expected_publisher",
+        "inspect_subscriber",
+        "require_expected_subscriber",
+        "inspect_standby",
+        "require_failover_slot",
+        "pause_subscriber",
+        "stop_old_publisher",
+        "promote_standby",
+        "verify_promotion",
+        "require_new_primary",
+        "reconnect_subscriber",
+        "resume_subscriber",
+        "mutate_new_primary",
+        "await_subscriber_data",
+        "verify_subscriber",
+        "verify_consumer_identity",
+        "require_same_consumer",
+        "continuity_evidence"
+      ]
+    },
+    {
+      "execution_id": "51joKjUw13lqAcNCLLxDYO",
+      "state": "FAILED",
+      "failed_tasks": [
+        "inspect_publisher"
+      ],
+      "completed_tasks": [
+        "require_consent"
+      ]
+    },
+    {
+      "execution_id": "7OzIwQU9sF5HpQ3M0fqCq9",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_consent",
+        "consent_missing"
+      ],
+      "completed_tasks": []
+    },
+    {
+      "execution_id": "3DJna3JOYiR4jQsoD7pGgE",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_expected_subscriber",
+        "unexpected_subscriber"
+      ],
+      "completed_tasks": [
+        "require_consent",
+        "inspect_publisher",
+        "publisher_observation",
+        "require_expected_publisher",
+        "inspect_subscriber"
+      ]
+    },
+    {
+      "execution_id": "5LS6jKXLnHHJTnndHqgEKB",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_expected_subscriber",
+        "unexpected_subscriber"
+      ],
+      "completed_tasks": [
+        "require_consent",
+        "inspect_publisher",
+        "publisher_observation",
+        "require_expected_publisher",
+        "inspect_subscriber"
+      ]
+    },
+    {
+      "execution_id": "27AidosWN7u8C4hBuV5p1F",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_expected_publisher",
+        "unexpected_publisher"
+      ],
+      "completed_tasks": [
+        "require_consent",
+        "inspect_publisher",
+        "publisher_observation"
+      ]
+    },
+    {
+      "execution_id": "DBsOOpfiwHePwwYXvioXx",
+      "state": "FAILED",
+      "failed_tasks": [
+        "inspect_standby"
+      ],
+      "completed_tasks": [
+        "require_consent",
+        "inspect_publisher",
+        "publisher_observation",
+        "require_expected_publisher",
+        "inspect_subscriber",
+        "require_expected_subscriber"
+      ]
+    },
+    {
+      "execution_id": "4ygoCGa0vZIIJileHPlSN",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_expected_publisher",
+        "unexpected_publisher"
+      ],
+      "completed_tasks": [
+        "require_consent",
+        "inspect_publisher",
+        "publisher_observation"
+      ]
+    },
+    {
+      "execution_id": "1PDrfJPfF8FGhH6NYPY3j",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_expected_subscriber",
+        "unexpected_subscriber"
+      ],
+      "completed_tasks": [
+        "require_consent",
+        "inspect_publisher",
+        "publisher_observation",
+        "require_expected_publisher",
+        "inspect_subscriber"
+      ]
+    }
+  ],
+  "missing_slot_observation": {
+    "row": {
+      "recovery": true,
+      "caught_up": true,
+      "system_id": "7699324562797264933",
+      "slot_ready": false,
+      "cluster_name": "rehearsal_standby"
+    },
+    "size": 1
+  },
+  "continuity_output": {
+    "values": {
+      "verdict": "verified_in_disposable_lab",
+      "origin_id": "1",
+      "observed_rows": "1:keep,2:after,4:inserted",
+      "subscription_oid": "16392",
+      "publisher_system_id": "7699324648588607527",
+      "subscriber_system_id": "7699324648589795366"
+    }
+  }
+}

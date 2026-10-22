@@ -1,0 +1,12 @@
+[
+  {
+    "name": "plugin-jdbc-postgres",
+    "version": "2.3.0",
+    "group": "io.kestra.plugin.jdbc.postgresql"
+  },
+  {
+    "name": "plugin-docker",
+    "version": "1.7.0",
+    "group": "io.kestra.plugin.docker"
+  }
+]

@@ -1,0 +1,48 @@
+test_connection_closed_during_startup_is_retried (test_startup.StartupReadinessTests.test_connection_closed_during_startup_is_retried) ... ERROR
+
+======================================================================
+ERROR: test_connection_closed_during_startup_is_retried (test_startup.StartupReadinessTests.test_connection_closed_during_startup_is_retried)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/tests/test_startup.py", line 32, in test_connection_closed_during_startup_is_retried
+    self.assertEqual({'version': 'ready'}, lab_support.wait_for_api(timeout=5))
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "<checkout>/tests/lab_support.py", line 73, in wait_for_api
+    return eventually(available, timeout=timeout)
+  File "<checkout>/tests/lab_support.py", line 42, in eventually
+    last = check()
+  File "<checkout>/tests/lab_support.py", line 69, in available
+    return api('GET', '/api/v1/configs')
+  File "<checkout>/tests/lab_support.py", line 56, in api
+    with urllib.request.urlopen(request, timeout=30) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 487, in open
+    response = self._open(req, data)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1350, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1325, in do_open
+    r = h.getresponse()
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py", line 1450, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py", line 305, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+----------------------------------------------------------------------
+Ran 1 test in 0.544s
+
+FAILED (errors=1)

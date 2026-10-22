@@ -1,0 +1,21 @@
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 409: 'Conflict'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+test_missing_standby_slot_refuses_before_any_promotion (test_rehearsal.RehearsalIntegrationTests.test_missing_standby_slot_refuses_before_any_promotion) ... ok
+test_switchover_preserves_existing_subscriber_and_exact_data (test_rehearsal.RehearsalIntegrationTests.test_switchover_preserves_existing_subscriber_and_exact_data) ... FAIL
+
+======================================================================
+FAIL: test_switchover_preserves_existing_subscriber_and_exact_data (test_rehearsal.RehearsalIntegrationTests.test_switchover_preserves_existing_subscriber_and_exact_data)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/tests/test_rehearsal.py", line 18, in test_switchover_preserves_existing_subscriber_and_exact_data
+    self.assertEqual('SUCCESS', execution['state']['current'], execution['id'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'SUCCESS' != 'FAILED'
+- SUCCESS
++ FAILED
+ : 4BdqQoUkbbpS9ZEEbSIxNR
+
+----------------------------------------------------------------------
+Ran 2 tests in 31.525s
+
+FAILED (failures=1)

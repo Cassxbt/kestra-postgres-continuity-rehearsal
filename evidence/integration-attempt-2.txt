@@ -1,0 +1,24 @@
+test_missing_standby_slot_refuses_before_any_promotion (test_rehearsal.RehearsalIntegrationTests.test_missing_standby_slot_refuses_before_any_promotion) ...   execution=4FPzRufIlSJaioer2Z2Rml state=FAILED
+ok
+test_switchover_preserves_existing_subscriber_and_exact_data (test_rehearsal.RehearsalIntegrationTests.test_switchover_preserves_existing_subscriber_and_exact_data) ...   execution=42rcB1lYcai6KeA6bnau30 state=SUCCESS
+  execution=3fhcpILloU99susNBaPcX1 state=FAILED
+ok
+test_denied_consent_cannot_stop_or_promote (test_rehearsal.RehearsalSafetyTests.test_denied_consent_cannot_stop_or_promote) ...   execution=5dOiyiplR9jqTILCuyqLu6 state=FAILED
+ok
+test_disabled_subscription_cannot_stop_or_promote (test_rehearsal.RehearsalSafetyTests.test_disabled_subscription_cannot_stop_or_promote) ...   execution=3ieol54C8XisXH8bbSVUqA state=FAILED
+ok
+test_missing_expected_subscription_cannot_stop_or_promote (test_rehearsal.RehearsalSafetyTests.test_missing_expected_subscription_cannot_stop_or_promote) ...   execution=z0Pe21MFqmuVsgJgXQEZQ state=FAILED
+ok
+test_unexpected_data_cannot_pass_by_matching_only_row_count (test_rehearsal.RehearsalSafetyTests.test_unexpected_data_cannot_pass_by_matching_only_row_count) ...   execution=4EuL0t9NKwRgzQtQ20jxlS state=FAILED
+ok
+test_unreachable_standby_is_failure_not_a_ready_result (test_rehearsal.RehearsalSafetyTests.test_unreachable_standby_is_failure_not_a_ready_result) ...   execution=223jjoJ2Kzabv0UQqnX8d4 state=FAILED
+ok
+test_wrong_publisher_identity_cannot_stop_or_promote (test_rehearsal.RehearsalSafetyTests.test_wrong_publisher_identity_cannot_stop_or_promote) ...   execution=6oe6dZjGRZG7XnYaRB9GbC state=FAILED
+ok
+test_wrong_subscriber_identity_cannot_stop_or_promote (test_rehearsal.RehearsalSafetyTests.test_wrong_subscriber_identity_cannot_stop_or_promote) ...   execution=5WM8GTrdG7P8GJp0YFYTzD state=FAILED
+ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 136.198s
+
+OK

@@ -1,0 +1,33 @@
+test_missing_standby_slot_refuses_before_any_promotion (test_rehearsal.RehearsalIntegrationTests.test_missing_standby_slot_refuses_before_any_promotion) ... FAIL
+test_switchover_preserves_existing_subscriber_and_exact_data (test_rehearsal.RehearsalIntegrationTests.test_switchover_preserves_existing_subscriber_and_exact_data) ... FAIL
+
+======================================================================
+FAIL: test_missing_standby_slot_refuses_before_any_promotion (test_rehearsal.RehearsalIntegrationTests.test_missing_standby_slot_refuses_before_any_promotion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/tests/test_rehearsal.py", line 42, in test_missing_standby_slot_refuses_before_any_promotion
+    self.assertEqual('FAILED', execution['state']['current'], execution['id'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'FAILED' != 'SUCCESS'
+- FAILED
++ SUCCESS
+ : 1xJAviDvx9HB4IP8Y8KQEE
+
+======================================================================
+FAIL: test_switchover_preserves_existing_subscriber_and_exact_data (test_rehearsal.RehearsalIntegrationTests.test_switchover_preserves_existing_subscriber_and_exact_data)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/tests/test_rehearsal.py", line 19, in test_switchover_preserves_existing_subscriber_and_exact_data
+    self.assertEqual('f', sql('standby', 'SELECT pg_is_in_recovery();'),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     'A no-op workflow must not pass the continuity test')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'f' != 't'
+- f
++ t
+ : A no-op workflow must not pass the continuity test
+
+----------------------------------------------------------------------
+Ran 2 tests in 40.940s
+
+FAILED (failures=2)

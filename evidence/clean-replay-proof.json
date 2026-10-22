@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-22",
+  "source_commit": "5e848f2",
+  "result": "OK",
+  "tests": 10,
+  "integration_tests": 9,
+  "startup_regression_tests": 1,
+  "duration_seconds": 371.426,
+  "executions": [
+    {
+      "execution_id": "6ArHQQfag2ZmZRAdKejwr1",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_failover_slot",
+        "standby_not_ready"
+      ]
+    },
+    {
+      "execution_id": "2fwyVKOjJB7JzugVeyhfXL",
+      "state": "SUCCESS",
+      "failed_tasks": []
+    },
+    {
+      "execution_id": "5seUuTJbv3dpFQ7fhjiJkv",
+      "state": "FAILED",
+      "failed_tasks": [
+        "inspect_publisher"
+      ]
+    },
+    {
+      "execution_id": "TdaoBVM3ChjmiKT6TtAyo",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_consent",
+        "consent_missing"
+      ]
+    },
+    {
+      "execution_id": "3Xfgn7WLvCneZVfRCgfrr8",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_expected_subscriber",
+        "unexpected_subscriber"
+      ]
+    },
+    {
+      "execution_id": "1UyAjduI355wPyRG10DGNB",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_expected_subscriber",
+        "unexpected_subscriber"
+      ]
+    },
+    {
+      "execution_id": "1IUTDLl5i05UYY9H5AC1gk",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_expected_publisher",
+        "unexpected_publisher"
+      ]
+    },
+    {
+      "execution_id": "76OIZUaCfcVT8l1dnsXUQq",
+      "state": "FAILED",
+      "failed_tasks": [
+        "inspect_standby"
+      ]
+    },
+    {
+      "execution_id": "1evT9e49vXa0XBTtOykxOj",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_expected_publisher",
+        "unexpected_publisher"
+      ]
+    },
+    {
+      "execution_id": "7Y606I1kFy74kPv6AdLDmQ",
+      "state": "FAILED",
+      "failed_tasks": [
+        "require_expected_subscriber",
+        "unexpected_subscriber"
+      ]
+    }
+  ],
+  "versions": {
+    "version": "2.0.6",
+    "plugins": [
+      {
+        "name": "plugin-jdbc-postgres",
+        "version": "2.3.0"
+      },
+      {
+        "name": "plugin-docker",
+        "version": "1.7.0"
+      }
+    ]
+  },
+  "flow_sha256": "646e620bccab11294606b2d13d93e8f37de02d0e3ccefa9b2880a767a364acc0",
+  "missing_slot_observation": {
+    "row": {
+      "recovery": true,
+      "caught_up": true,
+      "system_id": "7699498253903851557",
+      "slot_ready": false,
+      "cluster_name": "rehearsal_standby"
+    },
+    "size": 1
+  },
+  "continuity_output": {
+    "values": {
+      "verdict": "verified_in_disposable_lab",
+      "origin_id": "1",
+      "observed_rows": "1:keep,2:after,4:inserted",
+      "subscription_oid": "16392",
+      "publisher_system_id": "7699498644720525350",
+      "subscriber_system_id": "7699498645059792934"
+    }
+  }
+}

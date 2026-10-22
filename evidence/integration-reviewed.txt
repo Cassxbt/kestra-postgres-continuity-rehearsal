@@ -1,0 +1,29 @@
+setUpClass (test_rehearsal.RehearsalIntegrationTests) ... ERROR
+setUpClass (test_rehearsal.RehearsalSafetyTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (test_rehearsal.RehearsalIntegrationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/tests/test_rehearsal.py", line 20, in setUpClass
+    install_flow()
+    ~~~~~~~~~~~~^^
+  File "<checkout>/tests/lab_support.py", line 78, in install_flow
+    raise AssertionError(f'Flow validation failed: {validation}')
+AssertionError: Flow validation failed: [{'index': 0, 'constraints': 'Validation error: Unrecognized field "extend" (class io.kestra.core.models.flows.FlowWithSource), not marked as ignorable (26 known properties: "draft", "finally", "tenantId", "retry", "inputs", "errors", "tasks", "outputs", "concurrency", "variables", "deleted", "id", "description", "workerSelector", "labels", "sla", "checks", "policyRefs", "namespace", "disabled", "revision", "updated", "afterExecution", "triggers", "quotas", "source")', 'outdated': False}]
+
+======================================================================
+ERROR: setUpClass (test_rehearsal.RehearsalSafetyTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/tests/test_rehearsal.py", line 86, in setUpClass
+    install_flow()
+    ~~~~~~~~~~~~^^
+  File "<checkout>/tests/lab_support.py", line 78, in install_flow
+    raise AssertionError(f'Flow validation failed: {validation}')
+AssertionError: Flow validation failed: [{'index': 0, 'constraints': 'Validation error: Unrecognized field "extend" (class io.kestra.core.models.flows.FlowWithSource), not marked as ignorable (26 known properties: "draft", "finally", "tenantId", "retry", "inputs", "errors", "tasks", "outputs", "concurrency", "variables", "deleted", "id", "description", "workerSelector", "labels", "sla", "checks", "policyRefs", "namespace", "disabled", "revision", "updated", "afterExecution", "triggers", "quotas", "source")', 'outdated': False}]
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.164s
+
+FAILED (errors=2)
