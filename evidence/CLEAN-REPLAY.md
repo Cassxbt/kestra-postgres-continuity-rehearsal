@@ -41,4 +41,4 @@ Actual fresh-runtime versions: Kestra 2.0.6, JDBC PostgreSQL plugin 2.3.0, Docke
 
 ## Publication status
 
-The companion and one-file upstream contribution are prepared locally. A public companion URL must resolve before opening the blueprint PR. Maintainer review and external replay remain useful evidence to earn; optional pre-submission messaging is not a requirement.
+The companion is public. [Upstream PR #4791](https://github.com/kestra-io/blueprints/pull/4791) was approved and merged on October 23, 2026. This acceptance does not establish a prize or extend the tested scope. An independent practitioner replay remains unverified.

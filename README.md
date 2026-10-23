@@ -1,8 +1,8 @@
 # PostgreSQL subscriber continuity rehearsal
 
-A disposable Kestra workflow that stops an old PostgreSQL publisher, promotes its physical standby, reconnects an existing logical subscriber, and verifies exact insert/update/delete results. A healthy physical standby does not by itself prove that an existing logical subscriber will continue after promotion. This drill makes that outcome observable in Kestra. It is an experimental blueprint candidate for Kestra Hacktober, not a production failover manager.
+A disposable Kestra workflow that stops an old PostgreSQL publisher, promotes its physical standby, reconnects an existing logical subscriber, and verifies exact insert/update/delete results. A healthy physical standby does not by itself prove that an existing logical subscriber will continue after promotion. This drill makes that outcome observable in Kestra. The blueprint was accepted into Kestra’s official repository for Kestra Hacktober. This companion remains a disposable rehearsal, not a production failover manager.
 
-[Upstream blueprint PR #4791](https://github.com/kestra-io/blueprints/pull/4791) — submitted for maintainer review.
+[Upstream blueprint PR #4791](https://github.com/kestra-io/blueprints/pull/4791) — approved and merged on October 23, 2026. [Official blueprint](https://github.com/kestra-io/blueprints/blob/main/flows/postgres-subscriber-continuity-rehearsal.yaml).
 
 ## Run it
 
