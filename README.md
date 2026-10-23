@@ -2,11 +2,15 @@
 
 A disposable Kestra workflow that stops an old PostgreSQL publisher, promotes its physical standby, reconnects an existing logical subscriber, and verifies exact insert/update/delete results. A healthy physical standby does not by itself prove that an existing logical subscriber will continue after promotion. This drill makes that outcome observable in Kestra. It is an experimental blueprint candidate for Kestra Hacktober, not a production failover manager.
 
+[Upstream blueprint PR #4791](https://github.com/kestra-io/blueprints/pull/4791) — submitted for maintainer review.
+
 ## Run it
 
 Requires Docker Desktop or a compatible Linux Docker engine, Compose, Python 3.9+, and enough space for the pinned images (about 10 GiB was used on this machine). No host Java or Node installation is needed. Port 18080 must be free. The lab uses the dedicated Docker subnet `172.29.77.0/24`; change all lab addresses together if it conflicts with an existing network.
 
 ```sh
+git clone https://github.com/Cassxbt/kestra-postgres-continuity-rehearsal.git
+cd kestra-postgres-continuity-rehearsal
 make test
 ```
 
