@@ -68,6 +68,7 @@ This uses native JDBC, Docker, branching, bounded polling and execution outputs.
 
 ## Evidence and status
 
+- [Independent review guide](REVIEW.md): pinned replay instructions, expected observations and a neutral feedback template. Independent practitioner results are still pending.
 - [Clean local replay](evidence/CLEAN-REPLAY.md): ten passing tests from a fresh checkout and fresh metadata/storage; includes two cold-start failures found and fixed. This is not a second-machine replay.
 - [Test-first contract](TEST-CONTRACT.md)
 - [Original red run](evidence/red-integration.txt): both tests caught the no-op workflow despite its green Kestra status.
